@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>api연습</title>
+</head>
+
+<body>
+    <h1>Type of this pokemon <span id ="name"></span></h1>
+    <input id="pokemon" type="text">
+    <button onclick="getType()" >Go!</button>
+    <p id="type"></p>
+    <script>
+        function getType() {
+            var name = document.getElementById('pokemon').value;
+            fetch('https://pokeapi.co/api/v2/pokemon/'+ name)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('name').innerHTML = name;
+                    console.log(data);
+                    document.getElementById('type').innerHTML = data['types']['0']['type']['name'];
+
+                });
+        }
+    </script>
+</body>
+
+</html>
