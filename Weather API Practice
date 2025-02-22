@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>날씨api연습</title>
+</head>
+
+<body>
+    <h1>Today's Temperature of <span id="country">...</span></h1>
+    <input id="city" type="text">
+    <button onclick="getweather()">검색</button>
+    <p id="tem"></p>
+
+    <script>
+        function getweather() {
+            var city = document.getElementById('city').value;
+            fetch('https://goweather.herokuapp.com/weather/'+ city)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('tem').innerHTML = data['temperature'];
+                    document.getElementById('country').innerHTML = String(city);
+
+                });
+        }
+    </script>
+</body>
+
+</html>
